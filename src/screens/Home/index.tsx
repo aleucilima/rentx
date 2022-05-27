@@ -9,6 +9,7 @@ export function Home() {
   return (
     <Container>
       <Title>Home</Title>
+      
     </Container>
   );
 }

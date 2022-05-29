@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider } from 'styled-components';
+import { StatusBar } from 'expo-status-bar';
 
 import {
   useFonts,
@@ -17,9 +17,10 @@ import {
 
 import { Home } from './src/screens/Home';
 import theme from './src/global/styles/theme';
+import AppLoading from 'expo-app-loading';
 
 export default function App() {
-  const [appIsReady, setAppIsReady] = useState(false);
+  SplashScreen.preventAutoHideAsync();
 
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
@@ -29,10 +30,11 @@ export default function App() {
     Archivo_600SemiBold
   });
 
-  if (!appIsReady && fontsLoaded) {
-    setAppIsReady(true);
-    SplashScreen.hideAsync();
+  if (!fontsLoaded) {
+    return null
   }
+
+  SplashScreen.hideAsync();
 
   return (
     <ThemeProvider theme={theme}>

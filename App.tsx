@@ -1,7 +1,6 @@
 import React from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider } from 'styled-components';
-import { StatusBar } from 'expo-status-bar';
 
 import {
   useFonts,
@@ -17,7 +16,7 @@ import {
 
 import { Home } from './src/screens/Home';
 import theme from './src/global/styles/theme';
-import AppLoading from 'expo-app-loading';
+import { CarDetails } from './src/screens/CarDetails';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -38,7 +37,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <CarDetails />
     </ThemeProvider>
   );
 }

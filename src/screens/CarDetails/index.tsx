@@ -1,9 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { useTheme } from 'styled-components';
 
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Acessory } from '../../components/Accessory';
+import { Button } from '../../components/Button';
 
 import speedSvg from '../../assets/speed.svg';
 import accelerationSvg from '../../assets/acceleration.svg';
@@ -26,9 +28,12 @@ import {
   Price,
   Accessories,
   About,
+  Footer,
 } from './styles';
 
 export function CarDetails() {
+  const theme = useTheme();
+
   return (
     <Container>
       <StatusBar style="auto" />
@@ -73,6 +78,13 @@ export function CarDetails() {
         </About>
 
       </Content>
+
+      <Footer>
+        <Button
+          title="Confirmar"
+          color={theme.colors.main}
+        />
+      </Footer>
     </Container>
   );
 }

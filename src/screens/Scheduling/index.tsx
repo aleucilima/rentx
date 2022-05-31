@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useTheme } from 'styled-components';
 
 import { BackButton } from '../../components/BackButton';
+import { Calendar } from '../../components/Calendar';
 import { Button } from '../../components/Button';
 
 import ArrowSvg from '../../assets/arrow.svg';
@@ -57,7 +58,7 @@ export function Scheduling() {
       </Header>
 
       <Content>
-
+        <Calendar />
       </Content>
 
       <Footer>

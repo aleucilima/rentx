@@ -18,6 +18,7 @@ import theme from './src/global/styles/theme';
 import { Scheduling } from './src/screens/Scheduling';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SchedulingDetails } from './src/screens/SchedulingDetails';
+import { SchedulingComplete } from './src/screens/SchedulingComplete';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -39,7 +40,7 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
-        <SchedulingDetails />
+        <SchedulingComplete />
       </ThemeProvider>
     </GestureHandlerRootView>
   );

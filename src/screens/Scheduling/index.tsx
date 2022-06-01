@@ -2,6 +2,12 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useTheme } from 'styled-components';
 
+import { 
+  NavigationProp, 
+  ParamListBase, 
+  useNavigation 
+} from '@react-navigation/native';
+
 import { BackButton } from '../../components/BackButton';
 import { Calendar } from '../../components/Calendar';
 import { Button } from '../../components/Button';
@@ -22,6 +28,11 @@ import {
 
 export function Scheduling() {
   const theme = useTheme();
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  
+  function handleConfirmRental() {
+    navigate('SchedulingDetails');
+  }
   
   return (
     <Container>
@@ -64,6 +75,7 @@ export function Scheduling() {
       <Footer>
         <Button
           title="Confirmar"
+          onPress={handleConfirmRental}
         />
       </Footer>
     </Container>

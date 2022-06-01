@@ -4,6 +4,12 @@ import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 
+import { 
+  NavigationProp, 
+  ParamListBase, 
+  useNavigation 
+} from '@react-navigation/native';
+
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Acessory } from '../../components/Accessory';
@@ -44,6 +50,11 @@ import {
 
 export function SchedulingDetails() {
   const theme = useTheme();
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+
+  function handleConfirmRental() {
+    navigate('SchedulingComplete');
+  }
 
   return (
     <Container>
@@ -120,6 +131,7 @@ export function SchedulingDetails() {
         <Button
           title="Alugar agora"
           color={theme.colors.success}
+          onPress={handleConfirmRental}
         />
       </Footer>
     </Container>

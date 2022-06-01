@@ -2,6 +2,12 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useTheme } from 'styled-components';
 
+import { 
+  NavigationProp, 
+  ParamListBase, 
+  useNavigation 
+} from '@react-navigation/native';
+
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Acessory } from '../../components/Accessory';
@@ -33,7 +39,11 @@ import {
 
 export function CarDetails() {
   const theme = useTheme();
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
 
+  function handleConfirmRental() {
+    navigate('Scheduling');
+  }
   return (
     <Container>
       <StatusBar style="auto" />
@@ -81,8 +91,9 @@ export function CarDetails() {
 
       <Footer>
         <Button
-          title="Confirmar"
+          title="Escolher período do aluguel"
           color={theme.colors.main}
+          onPress={handleConfirmRental}
         />
       </Footer>
     </Container>

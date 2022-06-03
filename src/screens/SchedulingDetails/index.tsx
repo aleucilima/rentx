@@ -72,7 +72,7 @@ export function SchedulingDetails() {
       <Content>
         <Details>
           <Description>
-            <Brand>Fiat</Brand>
+            <Brand>Lamborguini</Brand>
             <Name>Huracan</Name>
           </Description>
 

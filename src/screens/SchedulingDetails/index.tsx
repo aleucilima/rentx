@@ -78,7 +78,7 @@ export function SchedulingDetails() {
 
           <Rent>
             <Period>Ao dia</Period>
-            <Price>R$ 40,00</Price>
+            <Price>R$ 400,00</Price>
           </Rent>
         </Details>
 

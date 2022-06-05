@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { StatusBar } from 'expo-status-bar';
+import { Alert } from 'react-native';
 
 import { 
   NavigationProp, 
@@ -9,8 +10,11 @@ import {
 } from '@react-navigation/native';
 
 import Logo from '../../assets/logo.svg';
+import api from '../../services/api';
+import { CarDTO } from '../../dtos/CarDTO';
 
 import { Car } from '../../components/Car';
+import { Load } from '../../components/Load';
 
 import {
   Container,
@@ -21,6 +25,8 @@ import {
 } from './styles';
 
 export function Home() {
+  const [loading, setLoading] = useState(true);
+  const [cars, setCars] = useState<CarDTO[]>([]);
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
 
   const carData = {
@@ -36,6 +42,24 @@ export function Home() {
   function handleCarDetails() {
     navigate('CarDetails');
   }
+
+  async function fetchCars() {
+    await api.get('/cars')
+    .then(response => {
+      setCars(response.data as CarDTO[]);
+    })
+    .catch(error => {
+      Alert.alert('Erro', 'Não foi possível carregar os carros');
+      console.error(error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+  }
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
 
   return (
     <Container>
@@ -53,13 +77,15 @@ export function Home() {
         </HeaderContent>
       </Header>
 
-      <CarList
-        data={[1,2,3,4,5,6,7,8,9,10,11,12]}
-        keyExtractor={item => String(item)}
-        renderItem={({ item }) =>
-         <Car data={carData} onPress={handleCarDetails} />
-        }
-      />
+      { loading ? <Load /> : 
+        <CarList
+          data={cars}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) =>
+          <Car data={item} onPress={handleCarDetails} />
+          }
+        />
+      }
 
     </Container>
   );

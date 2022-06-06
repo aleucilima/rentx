@@ -9,9 +9,9 @@ import {
   useNavigation 
 } from '@react-navigation/native';
 
+import { CarDTO } from '../../dtos/CarDTO';
 import Logo from '../../assets/logo.svg';
 import api from '../../services/api';
-import { CarDTO } from '../../dtos/CarDTO';
 
 import { Car } from '../../components/Car';
 import { Load } from '../../components/Load';
@@ -29,18 +29,8 @@ export function Home() {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
 
-  const carData = {
-    brand: 'Fiat',
-    name: 'Uno',
-    rent: {
-      period: 'Ao dia',
-      price: 100,
-    },
-    thumbnail: 'https://www.pngmart.com/files/1/Audi-RS5-Red-PNG.png'
-  }
-
-  function handleCarDetails() {
-    navigate('CarDetails');
+  function handleCarDetails(car: CarDTO) {
+    navigate('CarDetails', { car });
   }
 
   async function fetchCars() {
@@ -82,7 +72,7 @@ export function Home() {
           data={cars}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) =>
-          <Car data={item} onPress={handleCarDetails} />
+            <Car data={item} onPress={() => handleCarDetails(item)} />
           }
         />
       }

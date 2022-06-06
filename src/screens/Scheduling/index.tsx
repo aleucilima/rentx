@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useTheme } from 'styled-components';
 
@@ -9,7 +9,7 @@ import {
 } from '@react-navigation/native';
 
 import { BackButton } from '../../components/BackButton';
-import { Calendar } from '../../components/Calendar';
+import { Calendar, DayProps } from '../../components/Calendar';
 import { Button } from '../../components/Button';
 
 import ArrowSvg from '../../assets/arrow.svg';
@@ -27,11 +27,26 @@ import {
 } from './styles';
 
 export function Scheduling() {
+  const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>({} as DayProps);
+  const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation();
   const theme = useTheme();
-  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   
   function handleConfirmRental() {
     navigate('SchedulingDetails');
+  }
+
+  function handleChangeDate(date: DayProps) {
+    let start = !lastSelectedDate.timestamp ? date : lastSelectedDate;
+    let end = date;
+
+    if(start.timestamp > end.timestamp) {
+      start = end;
+      end = start;
+    }
+
+    setLastSelectedDate(end);
+
+    const interval = 
   }
   
   return (
@@ -39,7 +54,7 @@ export function Scheduling() {
       <StatusBar style="light" />
       <Header>
         <BackButton 
-          onPress={() => {}} 
+          onPress={goBack} 
           color={theme.colors.shape}
         />
 
@@ -69,7 +84,10 @@ export function Scheduling() {
       </Header>
 
       <Content>
-        <Calendar />
+        <Calendar 
+          markedDates={{}}
+          onDayPress={handleChangeDate}
+        />
       </Content>
 
       <Footer>

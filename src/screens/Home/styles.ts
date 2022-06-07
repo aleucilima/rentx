@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { RectButton } from 'react-native-gesture-handler';
 import { FlatList, FlatListProps } from 'react-native';
 import { CarDTO } from '../../dtos/CarDTO';
 

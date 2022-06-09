@@ -19,14 +19,20 @@ export function Button({
   color,
   enabled = true,
   loading = false,
+  onPress,
 }: Props) {
   const theme = useTheme();
 
+  const containerProps = {
+    color: color || theme.colors.main,
+    enabled: enabled,
+    style: { opacity: enabled === false || loading === true ? 0.5 : 1 },
+    onPress: onPress
+  }
+
   return (
     <Container
-      color={color || theme.colors.main}
-      enabled={enabled}
-      style={{ opacity: enabled === false || loading === true ? 0.5 : 1 }}
+      {...containerProps}
     >
       {loading ? (
         <ActivityIndicator color={theme.colors.shape} />

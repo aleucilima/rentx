@@ -17,6 +17,7 @@ export function AppRoutes() {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Splash"
     >
       <Screen 
         name="Splash" 

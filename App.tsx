@@ -2,6 +2,7 @@ import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider } from 'styled-components';
+import { LogBox } from 'react-native';
 
 import {
   useFonts,
@@ -17,6 +18,10 @@ import {
 
 import theme from './src/global/styles/theme';
 import { Routes } from './src/routes';
+
+LogBox.ignoreLogs([
+  'ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from \'deprecated-react-native-prop-types\'.'
+])
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();

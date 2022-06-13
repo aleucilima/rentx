@@ -12,7 +12,7 @@ import {
 } from '@react-navigation/native';
 
 import { BackButton } from '../../components/BackButton';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 import { Car } from '../../components/Car';
 
 import { CarDTO } from '../../dtos/CarDTO';
@@ -89,7 +89,7 @@ export function MyCars() {
 
       {
         loading ? (
-          <Load />
+          <LoadAnimation />
       ) : (
           <Content>
             <Appointments>

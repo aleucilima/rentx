@@ -21,12 +21,16 @@ export function AppRoutes() {
     >
       <Screen 
         name="Splash" 
-        component={Splash} 
+        component={ Splash } 
+        
       />
       
       <Screen 
         name="Home" 
         component={ Home } 
+        options={{
+          gestureEnabled: false
+        }}
       />
 
       <Screen 

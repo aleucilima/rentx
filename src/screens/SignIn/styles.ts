@@ -19,3 +19,14 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.title};
   font-size: ${RFValue(40)}px;
 `;
+
+export const SubTitle = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.primary_400};
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFValue(15)}px;
+  line-height: ${RFValue(25)}px;
+
+  margin-top: 16px;
+`;
+
+export const Buttons = styled.View``;

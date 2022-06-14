@@ -1,6 +1,6 @@
 # rent-X
 
-This application is a rent a car manager.
+This application is a car rental manager, it can be possible to schedule a rental for a period, check the rented cars and check the information of a vehicle.
 
 ## Technologies used
 

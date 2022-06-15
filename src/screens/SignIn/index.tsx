@@ -2,6 +2,8 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useTheme } from 'styled-components';
 
+import { Input } from '../../components/Input';
+import { InputPassword } from '../../components/InputPassword';
 import { Button } from '../../components/Button';
 
 import {
@@ -12,7 +14,6 @@ import {
   Form,
   Footer
 } from './styles';
-import { Input } from '../../components/Input';
 
 
 export function SignIn() {
@@ -39,6 +40,11 @@ export function SignIn() {
           keyboardType='email-address'
           autoCorrect={false}
           autoCapitalize="none"
+        />
+
+        <InputPassword
+          iconName="lock"
+          placeholder="Senha"
         />
       </Form>
 

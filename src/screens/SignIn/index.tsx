@@ -26,6 +26,7 @@ import {
 } from './styles';
 
 export function SignIn() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -99,8 +100,8 @@ export function SignIn() {
             <Button
               title="Login"
               onPress={handleSignIn}
-              enabled={true}
-              loading={false}
+              enabled={!loading}
+              loading={loading}
             />
 
             <Button
@@ -108,7 +109,6 @@ export function SignIn() {
               color={theme.colors.background_secondary}
               onPress={handleSignIn}
               enabled={true}
-              loading={false}
               light
             />
           </Footer>

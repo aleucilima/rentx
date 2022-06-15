@@ -1,4 +1,4 @@
-package com.rentx.newarchitecture;
+package com.aleucilima.rentx.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.rentx.BuildConfig;
-import com.rentx.newarchitecture.components.MainComponentsRegistry;
-import com.rentx.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.aleucilima.rentx.BuildConfig;
+import com.aleucilima.rentx.newarchitecture.components.MainComponentsRegistry;
+import com.aleucilima.rentx.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

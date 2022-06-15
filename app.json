@@ -9,6 +9,9 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.aleucilima.rentx"
+    }
   }
 }

@@ -10,9 +10,9 @@ interface Props extends RectButtonProps {
   title: string;
   color?: string;
   loading?: boolean;
-  enabled?: boolean;
   light?: boolean;
   onPress: () => void;
+  enabled?: boolean;
 }
 
 export function Button({

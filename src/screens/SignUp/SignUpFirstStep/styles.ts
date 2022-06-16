@@ -1,6 +1,6 @@
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
   padding: 0 24px;
@@ -14,7 +14,7 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
 
-  margin-top: ${getStatusBarHeight() + 31}px;
+  margin-top: ${getStatusBarHeight() + RFPercentage(5)}px;
 `;
 
 export const Steps = styled.View`
@@ -27,7 +27,7 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_600};
   color: ${({ theme }) => theme.colors.title};
 
-  margin-top: 60px;
+  margin-top: ${RFPercentage(5)}px;
   margin-bottom: 16px;
 `;
 
@@ -41,7 +41,7 @@ export const SubTitle = styled.Text`
 
 export const Form = styled.View`
   width: 100%;
-  margin-top: 64px;
+  margin-top: ${RFPercentage(5)}px;
   margin-bottom: 16px;
 `;
 

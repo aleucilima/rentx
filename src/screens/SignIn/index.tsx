@@ -70,61 +70,63 @@ export function SignIn() {
   }
 
   return (
-    <KeyboardAvoidingView 
-      behavior='position'
-      enabled
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Container>
-          <StatusBar style="dark" />
-          <Header>
-            <Title>
-              Estamos{'\n'}
-              quase lá.
-            </Title>
-            <SubTitle>
-              Faça seu login para começar{'\n'}
-              uma experiência incrível.
-            </SubTitle>
-          </Header>
+    <>
+      <KeyboardAvoidingView 
+        behavior='position'
+        enabled
+      >
+        {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
+          <Container>
+            <StatusBar style="dark" />
+            <Header>
+              <Title>
+                Estamos{'\n'}
+                quase lá.
+              </Title>
+              <SubTitle>
+                Faça seu login para começar{'\n'}
+                uma experiência incrível.
+              </SubTitle>
+            </Header>
 
-          <Form>
-            <Input 
-              iconName="mail"
-              placeholder="E-mail"
-              keyboardType='email-address'
-              autoCorrect={false}
-              autoCapitalize="none"
-              onChangeText={setEmail}
-              value={email}
-            />
+            <Form>
+              <Input 
+                iconName="mail"
+                placeholder="E-mail"
+                keyboardType='email-address'
+                autoCorrect={false}
+                autoCapitalize="none"
+                onChangeText={setEmail}
+                value={email}
+              />
 
-            <InputPassword
-              iconName="lock"
-              placeholder="Senha"
-              onChangeText={setPassword}
-              value={password}
-            />
-          </Form>
+              <InputPassword
+                iconName="lock"
+                placeholder="Senha"
+                onChangeText={setPassword}
+                value={password}
+              />
+            </Form>
 
-          <Footer>
-            <Button
-              title="Login"
-              onPress={handleSignIn}
-              enabled={!loading}
-              loading={loading}
-            />
+            <Footer>
+              <Button
+                title="Login"
+                onPress={handleSignIn}
+                enabled={!loading}
+                loading={loading}
+              />
 
-            <Button
-              title="Criar conta gratuita"
-              color={theme.colors.background_secondary}
-              onPress={handleNewAccount}
-              enabled={true}
-              light
-            />
-          </Footer>
-        </Container>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+              <Button
+                title="Criar conta gratuita"
+                color={theme.colors.background_secondary}
+                onPress={handleNewAccount}
+                enabled={true}
+                light
+              />
+            </Footer>
+          </Container>
+        {/* </TouchableWithoutFeedback> */}
+      </KeyboardAvoidingView>
+    </>
   );
 }

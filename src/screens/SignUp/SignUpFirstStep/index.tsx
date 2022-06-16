@@ -56,6 +56,7 @@ export function SignUpFirstStep() {
   }
 
   return (
+    <>
     <KeyboardAvoidingView 
       behavior='position'
       enabled
@@ -110,5 +111,6 @@ export function SignUpFirstStep() {
         />
       </Container>
     </KeyboardAvoidingView>
+    </>
   );
 }

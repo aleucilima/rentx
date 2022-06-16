@@ -5,7 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 import { 
   NavigationProp, 
   ParamListBase, 
-  useNavigation 
+  useNavigation, 
+  useRoute
 } from '@react-navigation/native';
 
 import { ConfirmButton } from '../../components/ConfirmButton';
@@ -21,12 +22,21 @@ import {
   Footer
 } from './styles';
 
-export function SchedulingComplete() {
+interface Params {
+  title: string;
+  message?: string;
+  nextScreenRoute: string;
+}
+
+export function Confirmation() {
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const { width } = useWindowDimensions();
+  const route = useRoute();
+
+  const { title, message, nextScreenRoute } = route.params as Params;
 
   function handleConfirm() {
-    navigate('Home');
+    navigate(nextScreenRoute);
   }
 
   return (
@@ -36,12 +46,10 @@ export function SchedulingComplete() {
 
       <Content>
         <DoneSvg width={80} height={80}/>
-        <Title>Carro alugado!</Title>
+        <Title>{ title }</Title>
 
         <Message>
-          Agora você só precisa ir {'\n'}
-          até uma concessionária da RENTX {'\n'}
-          pegar o seu automóvel.
+          { message }
         </Message>
       </Content>
 

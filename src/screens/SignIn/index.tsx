@@ -7,10 +7,14 @@ import {
   KeyboardAvoidingView, 
   TouchableWithoutFeedback, 
   Keyboard,
-  Platform, 
-  ScrollView,
   Alert,
 } from 'react-native';
+
+import { 
+  NavigationProp, 
+  ParamListBase, 
+  useNavigation 
+} from '@react-navigation/native';
 
 import { Input } from '../../components/Input';
 import { InputPassword } from '../../components/InputPassword';
@@ -30,6 +34,7 @@ export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   const theme = useTheme();
 
   async function handleSignIn() {
@@ -43,6 +48,8 @@ export function SignIn() {
       });
   
       await schema.validate({ email, password })
+
+      navigate('Home');
 
     } catch (error) {
       if(error instanceof Yup.ValidationError) {
@@ -58,12 +65,16 @@ export function SignIn() {
     }
   }
 
+  function handleNewAccount() {
+    navigate('SignUpFirstStep');
+  }
+
   return (
     <KeyboardAvoidingView 
       behavior='position'
       enabled
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
         <Container>
           <StatusBar style="dark" />
           <Header>
@@ -107,13 +118,13 @@ export function SignIn() {
             <Button
               title="Criar conta gratuita"
               color={theme.colors.background_secondary}
-              onPress={handleSignIn}
+              onPress={handleNewAccount}
               enabled={true}
               light
             />
           </Footer>
         </Container>
-      </TouchableWithoutFeedback>
+      {/* </TouchableWithoutFeedback> */}
     </KeyboardAvoidingView>
   );
 }

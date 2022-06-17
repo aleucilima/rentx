@@ -57,60 +57,60 @@ export function SignUpFirstStep() {
 
   return (
     <>
-    <KeyboardAvoidingView 
-      behavior='position'
-      enabled
-    >
-      <Container>
-        <Header>
-          <BackButton onPress={goBack}/>
+      <KeyboardAvoidingView 
+        behavior='position'
+        enabled
+      >
+        <Container>
+          <Header>
+            <BackButton onPress={goBack}/>
 
-          <Steps>
-            <Bullet active/>
-            <Bullet />
-          </Steps>
-        </Header>
+            <Steps>
+              <Bullet active/>
+              <Bullet />
+            </Steps>
+          </Header>
 
-        <Title>Crie sua{'\n'}conta</Title>
+          <Title>Crie sua{'\n'}conta</Title>
 
-        <SubTitle>
-          Faça seu cadastro de{'\n'}
-          forma rápida e fácil
-        </SubTitle>
+          <SubTitle>
+            Faça seu cadastro de{'\n'}
+            forma rápida e fácil
+          </SubTitle>
 
-        <Form>
-          <FormTitle>1. Dados</FormTitle>
+          <Form>
+            <FormTitle>1. Dados</FormTitle>
 
-          <Input 
-            iconName='user'
-            placeholder='Nome'
-            onChangeText={setName}
-            value={name}
+            <Input 
+              iconName='user'
+              placeholder='Nome'
+              onChangeText={setName}
+              value={name}
+            />
+
+            <Input
+              iconName='mail'
+              placeholder='E-mail'
+              keyboardType='email-address'
+              onChangeText={setEmail}
+              value={email}
+            />
+
+            <Input
+              iconName='credit-card'
+              placeholder='CNH'
+              keyboardType='numeric'
+              onChangeText={setDriverLicense}
+              value={driverLicense}
+            />
+          </Form>
+
+          <Button 
+            title="Próximo"
+            onPress={handleNextStep}
           />
-
-          <Input
-            iconName='mail'
-            placeholder='E-mail'
-            keyboardType='email-address'
-            onChangeText={setEmail}
-            value={email}
-          />
-
-          <Input
-            iconName='credit-card'
-            placeholder='CNH'
-            keyboardType='numeric'
-            onChangeText={setDriverLicense}
-            value={driverLicense}
-          />
-        </Form>
-
-        <Button 
-          title="Próximo"
-          onPress={handleNextStep}
-        />
-      </Container>
-    </KeyboardAvoidingView>
+        </Container>
+      </KeyboardAvoidingView>
     </>
   );
 }

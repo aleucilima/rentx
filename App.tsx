@@ -6,6 +6,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { ThemeProvider } from 'styled-components';
 import { LogBox } from 'react-native';
 
+import { AppProvider } from './src/hooks';
+
 import {
   useFonts,
   Inter_400Regular,
@@ -45,7 +47,9 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
-        <Routes />
+        <AppProvider>
+          <Routes />
+        </AppProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );

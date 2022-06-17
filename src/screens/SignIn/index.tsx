@@ -20,6 +20,8 @@ import { Input } from '../../components/Input';
 import { InputPassword } from '../../components/InputPassword';
 import { Button } from '../../components/Button';
 
+import { useAuth } from '../../hooks/auth';
+
 import {
   Container,
   Header,
@@ -35,6 +37,7 @@ export function SignIn() {
   const [password, setPassword] = useState('');
 
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  const { signIn } = useAuth();
   const theme = useTheme();
 
   async function handleSignIn() {
@@ -49,7 +52,11 @@ export function SignIn() {
   
       await schema.validate({ email, password })
 
-      navigate('Home');
+      await signIn({ email, password })
+        .catch((error) => {
+          Alert.alert('Erro', error.message);
+          console.error(error);
+        })
 
     } catch (error) {
       if(error instanceof Yup.ValidationError) {
@@ -75,7 +82,7 @@ export function SignIn() {
         behavior='position'
         enabled
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
           <Container>
             <StatusBar style="dark" />
             <Header>
@@ -125,7 +132,7 @@ export function SignIn() {
               />
             </Footer>
           </Container>
-        </TouchableWithoutFeedback>
+        {/* </TouchableWithoutFeedback> */}
       </KeyboardAvoidingView>
     </>
   );

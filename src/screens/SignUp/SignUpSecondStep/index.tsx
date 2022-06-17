@@ -9,7 +9,6 @@ import {
   useRoute,
 } from '@react-navigation/native';
 
-import { Confirmation } from '../../Confirmation';
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import { InputPassword } from '../../../components/InputPassword';
@@ -24,6 +23,7 @@ import {
   Form,
   FormTitle,
 } from './styles';
+import api from '../../../services/api';
 
 interface Params {
   user: {
@@ -52,14 +52,21 @@ export function SignUpSecondStep() {
       return Alert.alert('Opa!', 'As senhas não conferem');
     }
 
-    const data = {
-      ...user,
+    await api.post('/users', {
+      name: user.name,
+      email: user.email,
+      driver_license: user.driverLicense,
       password,
-    };
-
-    navigate('Confirmation', {
-      nextScreenRoute: 'SignIn',
-      title: 'Conta Criada!'
+    })
+    .then(() => {
+      navigate('Confirmation', {
+        nextScreenRoute: 'SignIn',
+        title: 'Conta Criada!'
+      });
+    })
+    .catch((error) => {
+      Alert.alert('Opa!', 'Erro ao criar a conta');
+      console.log(error);
     });
   }
 
@@ -73,8 +80,8 @@ export function SignUpSecondStep() {
           <BackButton onPress={goBack}/>
 
           <Steps>
-            <Bullet active/>
             <Bullet />
+            <Bullet active/>
           </Steps>
         </Header>
 

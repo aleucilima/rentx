@@ -32,23 +32,33 @@ export function Home() {
   function handleCarDetails(car: CarDTO) {
     navigate('CarDetails', { car });
   }
-
-  async function fetchCars() {
-    await api.get('/cars')
-    .then(response => {
-      setCars(response.data as CarDTO[]);
-    })
-    .catch(error => {
-      Alert.alert('Erro', 'Não foi possível carregar os carros');
-      console.error(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-  }
-
+  
   useEffect(() => {
+    let isMounted = true;
+
+    async function fetchCars() {
+      await api.get('/cars')
+      .then(response => {
+        if(isMounted) {
+          setCars(response.data as CarDTO[]);
+        }
+      })
+      .catch(error => {
+        Alert.alert('Erro', 'Não foi possível carregar os carros');
+        console.error(error);
+      })
+      .finally(() => {
+        if(isMounted) {
+          setLoading(false);
+        }
+      });
+    }
+
     fetchCars();
+    
+    return () => {
+      isMounted = false;
+    }
   }, []);
 
   return (

@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useTheme } from 'styled-components';
 import * as Yup from 'yup';
 
 import { 
   KeyboardAvoidingView, 
-  TouchableWithoutFeedback, 
-  Keyboard,
   Alert,
 } from 'react-native';
 
@@ -21,8 +19,6 @@ import { InputPassword } from '../../components/InputPassword';
 import { Button } from '../../components/Button';
 
 import { useAuth } from '../../hooks/auth';
-
-import { database } from '../../database';
 
 import {
   Container,
@@ -77,17 +73,6 @@ export function SignIn() {
   function handleNewAccount() {
     navigate('SignUpFirstStep');
   }
-
-  useEffect(() => {
-    async function loadData() {
-      const userCollection = database.get('users');
-      const users = await userCollection.query().fetch();
-      console.log('Usuaros cadastrados'); 
-      console.log(users);
-    }
-
-    loadData();
-  }, []);
 
   return (
     <>

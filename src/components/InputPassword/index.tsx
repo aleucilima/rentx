@@ -56,6 +56,7 @@ export function InputPassword({
         secureTextEntry={isPasswordVisible} 
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        autoCorrect={false}
         {...rest}
       />
 

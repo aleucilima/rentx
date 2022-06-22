@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { synchronize } from '@nozbe/watermelondb/sync';
+import { database } from '../../database';
 
 import { 
   NavigationProp, 
@@ -27,10 +30,16 @@ import {
 export function Home() {
   const [loading, setLoading] = useState(true);
   const [cars, setCars] = useState<CarDTO[]>([]);
+
+  const netInfo = useNetInfo();
   const { navigate }: NavigationProp<ParamListBase> = useNavigation();
   
   function handleCarDetails(car: CarDTO) {
     navigate('CarDetails', { car });
+  }
+
+  async function offlineSynchronize() {
+
   }
   
   useEffect(() => {

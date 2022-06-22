@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Alert } from 'react-native';
+import { KeyboardAvoidingView, Alert, Keyboard } from 'react-native';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import * as ImagePicker from 'expo-image-picker';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
 
 import {
@@ -123,111 +124,113 @@ export function Profile() {
       behavior='position'
       enabled
     >
-      <Container>
-        <Header>
-          <HeaderTop>
-            <BackButton 
-              color={theme.colors.shape} 
-              onPress={goBack}
-            />
-
-            <HeaderTitle>Editar Perfil </HeaderTitle>
-
-            <LogoutButton onPress={handleSignOut}>
-              <Feather 
-                name="power" 
-                size={24} 
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <Header>
+            <HeaderTop>
+              <BackButton 
                 color={theme.colors.shape} 
+                onPress={goBack}
               />
-            </LogoutButton>
-          </HeaderTop>
 
-          <PhotoContainer>
-            { !!avatar && <Photo source={{ uri: avatar }} /> }
-            <PhotoButton onPress={handleAvatarSelect}>
-              <Feather
-                name='camera'
-                size={24}
-                color={theme.colors.shape}
-              />
-            </PhotoButton>
-          </PhotoContainer>
-        </Header>
+              <HeaderTitle>Editar Perfil </HeaderTitle>
 
-        <Content
-          style={{ marginBottom: useBottomTabBarHeight() }}
-        >
-          <Options>
-            <Option 
-              active={option === 'dataEdit'}
-              onPress={() => handleOptionChange('dataEdit')}
-            >
-              <OptionTitle active={option === 'dataEdit'}>
-                Dados
-              </OptionTitle>
-            </Option>
-            <Option 
-              active={option === 'passwordEdit'}
-              onPress={() => handleOptionChange('passwordEdit')}
-            >
-              <OptionTitle active={option === 'passwordEdit'}>
-                Trocar senha
-              </OptionTitle>
-            </Option>
-          </Options>
-
-          {
-            option === 'dataEdit' ? (
-              <Section>
-                <Input 
-                  iconName='user'
-                  placeholder="Nome"
-                  autoCorrect={false}
-                  defaultValue={user.name}
-                  onChangeText={setName}
+              <LogoutButton onPress={handleSignOut}>
+                <Feather 
+                  name="power" 
+                  size={24} 
+                  color={theme.colors.shape} 
                 />
+              </LogoutButton>
+            </HeaderTop>
 
-                <Input 
-                  iconName='mail'
-                  editable={false}
-                  autoCorrect={false}
-                  defaultValue={user.email}
+            <PhotoContainer>
+              { !!avatar && <Photo source={{ uri: avatar }} /> }
+              <PhotoButton onPress={handleAvatarSelect}>
+                <Feather
+                  name='camera'
+                  size={24}
+                  color={theme.colors.shape}
                 />
+              </PhotoButton>
+            </PhotoContainer>
+          </Header>
 
-                <Input 
-                  iconName='credit-card'
-                  placeholder="CNH"
-                  keyboardType='numeric'
-                  defaultValue={user.driver_license}
-                  onChangeText={setDriverLicense}
-                />
-              </Section>
-            ) : (
-              <Section>
-                <InputPassword 
-                  iconName='lock'
-                  placeholder="Senha atual"
-                />
+          <Content
+            style={{ marginBottom: useBottomTabBarHeight() }}
+          >
+            <Options>
+              <Option 
+                active={option === 'dataEdit'}
+                onPress={() => handleOptionChange('dataEdit')}
+              >
+                <OptionTitle active={option === 'dataEdit'}>
+                  Dados
+                </OptionTitle>
+              </Option>
+              <Option 
+                active={option === 'passwordEdit'}
+                onPress={() => handleOptionChange('passwordEdit')}
+              >
+                <OptionTitle active={option === 'passwordEdit'}>
+                  Trocar senha
+                </OptionTitle>
+              </Option>
+            </Options>
 
-                <InputPassword 
+            {
+              option === 'dataEdit' ? (
+                <Section>
+                  <Input 
+                    iconName='user'
+                    placeholder="Nome"
+                    autoCorrect={false}
+                    defaultValue={user.name}
+                    onChangeText={setName}
+                  />
+
+                  <Input 
+                    iconName='mail'
+                    editable={false}
+                    autoCorrect={false}
+                    defaultValue={user.email}
+                  />
+
+                  <Input 
+                    iconName='credit-card'
+                    placeholder="CNH"
+                    keyboardType='numeric'
+                    defaultValue={user.driver_license}
+                    onChangeText={setDriverLicense}
+                  />
+                </Section>
+              ) : (
+                <Section>
+                  <InputPassword 
+                    iconName='lock'
+                    placeholder="Senha atual"
+                  />
+
+                  <InputPassword 
+                    iconName='lock'
+                    placeholder="Nova senha"
+                  />
+
+                  <InputPassword 
                   iconName='lock'
                   placeholder="Nova senha"
-                />
+                  />
+                </Section>
+              )
+            }
 
-                <InputPassword 
-                iconName='lock'
-                placeholder="Nova senha"
-                />
-              </Section>
-            )
-          }
-
-          <Button 
-            title='Salvar alterações'   
-            onPress={handleProfileUpdate} 
-          />
-        </Content>
-      </Container>
+            <Button 
+              title='Salvar alterações'   
+              onPress={handleProfileUpdate} 
+            />
+          </Content>
+        </Container>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }

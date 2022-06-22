@@ -24,5 +24,6 @@ class Car extends Model {
 
   @field('thumbnail')
   thumbnail!: string;
-
 }
+
+export { Car }

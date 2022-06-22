@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useTheme } from 'styled-components';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import * as Yup from 'yup';
 
 import { 
   KeyboardAvoidingView, 
   Alert,
+  Keyboard,
 } from 'react-native';
 
 import { 
@@ -80,7 +82,7 @@ export function SignIn() {
         behavior='position'
         enabled
       >
-        {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
             <StatusBar style="dark" />
             <Header>
@@ -130,7 +132,7 @@ export function SignIn() {
               />
             </Footer>
           </Container>
-        {/* </TouchableWithoutFeedback> */}
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </>
   );

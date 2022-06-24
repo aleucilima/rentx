@@ -14,7 +14,6 @@ import {
   useNavigation 
 } from '@react-navigation/native';
 
-import { CarDTO } from '../../dtos/CarDTO';
 import Logo from '../../assets/logo.svg';
 import { Car as ModelCar } from '../../database/models/Car';
 
@@ -49,11 +48,10 @@ export function Home() {
 
         const { changes, latestVersion } = data;
         return { changes, timestamp: latestVersion };
-
       },
       pushChanges: async ({ changes }) => {
         const user = changes.users;
-        console.log(user)
+        
         if (user.updated.length > 0) {
           await api.post('/users/sync', user);
         }
@@ -68,8 +66,6 @@ export function Home() {
       try {
         const carCollection = database.get<ModelCar>('cars');
         const cars = await carCollection.query().fetch();
-
-        console.log(carCollection)
 
         if(isMounted) {
           setCars(cars);

@@ -2,6 +2,19 @@
 
 This application is a car rental manager, it can be possible to schedule a rental for a period, check the rented cars and check the information of a vehicle.
 
+# Initializable
+
+``` 
+yarn install
+```
+
+``` 
+npx react-native start
+```
+
+``` 
+npx react-native run-android
+```
 ## Technologies used
 
 * Expo Go

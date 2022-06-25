@@ -2,8 +2,11 @@
 
 This application is a car rental manager, it can be possible to schedule a rental for a period, check the rented cars and check the information of a vehicle.
 
-# Initializable
+# How to test the App?
 
+* Step 1 - 
+  After downloading the app and API, run the command below to download the dependencies:
+  
 ``` 
 yarn install
 ```

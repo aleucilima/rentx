@@ -38,5 +38,6 @@ npx react-native run-ios
 * AsyncStorage
 * React Native Reanimated
 * Calendars
+* WatermelonDB
 
 ![alt text](./assets/RentX.png)

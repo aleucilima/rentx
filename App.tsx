@@ -25,7 +25,11 @@ import { Routes } from './src/routes';
 
 LogBox.ignoreLogs([
   'ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from \'deprecated-react-native-prop-types\'.'
-])
+]);
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state'
+]);
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();

@@ -6,6 +6,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import * as ImagePicker from 'expo-image-picker';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useNetInfo } from '@react-native-community/netinfo';
 import * as Yup from 'yup';
 
 import {
@@ -41,14 +42,23 @@ export function Profile() {
   const { goBack }: NavigationProp<ParamListBase> = useNavigation();
   const { user, signOut, updateUser } = useAuth();
   const theme = useTheme();
-
+  const netInfo = useNetInfo();
+  
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
   const [name, setName] = useState(user.name);
   const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
   function handleOptionChange(option: 'dataEdit' | 'passwordEdit') {
-    setOption(option);
+    if(netInfo.isConnected === false && option === 'passwordEdit'){
+      Alert.alert(
+        'Oooops', 
+        'Você precisa estar conectado para alterar sua senha'
+      );
+      return;
+    } else {
+      setOption(option);
+    }
   }
 
   async function handleAvatarSelect() {

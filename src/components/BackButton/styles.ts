@@ -5,5 +5,8 @@ interface BackButtonProps {
   children: React.ReactNode;
 }
 
-export const Container = styled(BorderlessButton)<BackButtonProps>``;
+export const Container = styled(BorderlessButton)<BackButtonProps>`
+  width: 38px;
+  height: 38px;
+`;
 

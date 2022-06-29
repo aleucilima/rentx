@@ -51,7 +51,9 @@ function AuthProvider({ children } : AuthProviderProps) {
   
       const { token, user } = response.data;
   
-      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      api.defaults.headers.common = {
+        Authorization: `Bearer ${token}`
+      };
 
       const userCollection = database.get<ModelUser>('users');
       await database.write(async () => {

@@ -20,6 +20,7 @@ import {
   useRoute, 
 } from '@react-navigation/native';
 
+import { LoadAnimation } from '../../components/LoadAnimation';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Accessory } from '../../components/Accessory';
@@ -53,6 +54,7 @@ interface Params {
 }
 
 export function CarDetails() {
+  const [isLoading, setIsLoading] = useState(true);
   const [carUpdated, setCarUpdated] = useState<CarDTO>({} as CarDTO);
 
   const { navigate, goBack }: NavigationProp<ParamListBase> = useNavigation();
@@ -97,9 +99,14 @@ export function CarDetails() {
     async function fetchCarUpdated() {
       const response = await api.get(`/cars/${car.id}`);
       setCarUpdated(response.data);
+      setIsLoading(false);
     }
     fetchCarUpdated();
   }, [netInfo.isConnected]);
+
+  if(isLoading) {
+    return <LoadAnimation />;
+  }
 
   return (
     <Container>
@@ -150,6 +157,7 @@ export function CarDetails() {
             </Price>
           </Rent>
         </Details>
+
         {
           carUpdated.accessories && (
             <Accessories>
@@ -165,6 +173,7 @@ export function CarDetails() {
             </Accessories>
           )
         }
+        
         <About>
           {car.about}
         </About>
